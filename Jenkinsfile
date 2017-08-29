@@ -41,15 +41,15 @@ pipeline {
         )
       }
     }
-    stage('Deploy to Dev') {
-      steps {
-        sh './jenkins/deploy.sh dev'
-      }
-    }
     stage('Deploy to Staging') {
       steps {
-        input(message: 'Deploy to staging?', ok: '\'Fire away!\'')
         sh './jenkins/deploy.sh staging'
+      }
+    }
+    stage('Deploy to Production') {
+      steps {
+        input(message: 'Deploy to production?', ok: '\'Fire away!\'')
+        sh './jenkins/deploy.sh production'
         sh 'echo Notifying appropriate team members!'
       }
     }
