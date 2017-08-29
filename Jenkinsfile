@@ -12,5 +12,10 @@ pipeline {
         sh './jenkins/build.sh'
       }
     }
+    stage('Archive the Artifacts') {
+      steps {
+        archiveArtifacts 'target/*.war'
+      }
+    }
   }
 }
